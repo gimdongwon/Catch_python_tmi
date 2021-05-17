@@ -56,7 +56,7 @@
 - [Code Review](https://ehddnjs8989.medium.com/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-code-review-ec557ae8168)
 - [Code Review 요약 및 구체적 방안](https://ehddnjs8989.medium.com/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-code-review-%EC%9D%98-%EA%B5%AC%EC%B2%B4%EC%A0%81%EC%9D%B8-%EB%B0%A9%EC%95%88-%EB%B0%8F-%EC%A0%81%EC%9A%A9-ad4bd465391b)
 
-### 입출력 제한 확인하기.
+## 입출력 제한 확인하기.
 
 1. 입력이 100 이하인 경우
 
