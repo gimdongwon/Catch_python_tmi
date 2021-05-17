@@ -55,3 +55,36 @@
 
 - [Code Review](https://ehddnjs8989.medium.com/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-code-review-ec557ae8168)
 - [Code Review 요약 및 구체적 방안](https://ehddnjs8989.medium.com/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-code-review-%EC%9D%98-%EA%B5%AC%EC%B2%B4%EC%A0%81%EC%9D%B8-%EB%B0%A9%EC%95%88-%EB%B0%8F-%EC%A0%81%EC%9A%A9-ad4bd465391b)
+
+### 입출력 제한 확인하기.
+
+1. 입력이 100 이하인 경우
+
+- 완전탐색
+- 백트래킹
+
+2. 10,000 이하인 경우
+
+- O(n^2) 이내로 끝내야 함.
+- 문제에 따라 O(n^2 log n) 까지 가능 하기도 함
+- n^n 2차원 리스트 순회하는 문제가 많음.
+
+3. 1,000,000 이하인 경우
+
+- O(n log n) 이하로 끝내야 함.
+- 힙, 우선순위 큐
+- 정렬
+- 다익스트라
+- 위상정렬
+- 동적 계획법
+
+4. 100,000,000 이하인 경우
+
+- 최대 O(n)으로 끝내야 함
+- 동적 계획법
+- 그리디
+
+5. 그 이상인 경우
+
+- O(log n)으로 끝내야 함
+- 이진 탐색
