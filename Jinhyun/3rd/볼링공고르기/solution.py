@@ -7,4 +7,5 @@ def solution(first_line, second_line) :
     x = cb(gram, 2)
     list_gram = [i+j for i, j in x]
     n_count = len(list(filter(lambda x : x <= n, list_gram)))
-    return n_count
+    m_count = len(list(filter(lambda x : x <= m, list_gram)))
+    return max(n_count, m_count)
