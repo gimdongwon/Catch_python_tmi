@@ -18,3 +18,18 @@ def solution(fear_list):
             result += 1    # 완성된 그룹 수에 추가
     
     return result
+
+# --- 훨씬 직관적이고 간단한 풀이 ---
+def solution(fear_list):
+    fear_list.sort()
+    group = []
+    result = 0
+    
+    for fear in fear_list:
+        group.append(fear)
+        
+        if group[-1] == len(group):
+            group = []
+            result += 1
+    
+    return result
