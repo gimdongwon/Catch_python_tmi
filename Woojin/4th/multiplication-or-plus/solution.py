@@ -1,4 +1,5 @@
 # 풀이 1 (직관적인 풀이)
+
 def solution(s):
     s_list = list(map(int, s))
     
@@ -11,6 +12,7 @@ def solution(s):
     return s_list[0]
 
 # 풀이 2 (좀 더 효율적인 풀이)
+
 def solution(s):
     s_list = list(map(int, s))
     

@@ -8,8 +8,8 @@ def solution(coins):
     for i in range(1, len(coins)):
         for comb in combinations(coins, i):
             result.add(sum(comb))
-    
-    return min(set(range(1, max(result) + 1)) - result)
+
+    return min(set(range(1, max(result) + 2)) - result)
 
 # 풀이 2 (모든 금액들의 조합을 찾지 않고 만들 수 없는 금액을 찾는 풀이)
 
@@ -29,8 +29,8 @@ def solution(coins):
             result.add(r + coin)
         
         result.add(coin)
-    else:
-        return max(result) + 1
+
+    return max(result) + 1
     
 
 print(solution([3, 2, 1, 1, 9]))

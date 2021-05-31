@@ -55,23 +55,25 @@ def solution(food_times, k):
     q = 1 # 아래의 while 문을 통과시키기 위해 q를 1로 초기화
     
     while q:
-        q, r = divmod(k, len(food_times))
+        q, r = divmod(k, len(food_times)) # q: 몫, r: 나머지
         food_times = list(map(lambda x: (x[0], x[1] - q), food_times))
         remainder_times = []
         
-        for i in range(len(food_times)):
-            if food_times[i][1] > 0:
-                remainder_times.append(food_times[i])
+        for time in food_times:
+            if time[1] > 0:
+                remainder_times.append(time)
             else:
-                r -= food_times[i][1]
+                r -= time[1]
         
         food_times = remainder_times
         k = r
-      
-    for i in range(len(food_times)):
-        if k == 0 and food_times[i][1] > 0:
-            return food_times[i][0] + 1
+
+    for time in food_times:
+        if k == 0 and time[1] > 0:
+            return time[0] + 1
         
         if k > 0:
-            food_times[i] = (food_times[i][0], food_times[i][1] - 1)
+            time = (time[0], time[1] - 1)
             k -= 1
+            
+print(solution([9, 3, 1, 2, 2, 3], 12))
