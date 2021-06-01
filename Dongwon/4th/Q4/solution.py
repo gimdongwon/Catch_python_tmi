@@ -8,7 +8,7 @@ def solution(N, coins):
         for j in temp:
             result.append(sum(j))
     result = set(result)
-    for i in range(1, 1000001):
+    for i in range(1, 1000000001):
         if i not in result:
             print(i)
             break

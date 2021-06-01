@@ -42,7 +42,6 @@ def solution(food_times, k):
         heapq.heappush(que, (food_times[i], i+1))
     pre_food = 0
     min_food = que[0][0]
-    
     while k - (min_food - pre_food) * leng >= 0:
         k -= (min_food - pre_food) * leng
         heapq.heappop(que)
@@ -55,3 +54,5 @@ def solution(food_times, k):
     idx = k % leng
     que.sort(key=lambda x: x[1])
     return que[idx][1]
+
+solution([3,1,2],5)
