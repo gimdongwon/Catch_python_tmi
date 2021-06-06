@@ -8,9 +8,10 @@ def solution(N,M,board):
     # for i in range(N):
     #     board.append(list(map(int, input().split())))
 
+    # 삭제 가능한 치킨 집과 집으로 매칭하여 탐색
+
     chicken = []
     house = []
-    answer = 0
     sums = []
 
     for i in range(len(board)):
@@ -27,6 +28,7 @@ def solution(N,M,board):
             temp = []
             for jtem in resultItem:
                 temp.append(abs(item[0] - jtem[0]) + abs(item[1] - jtem[1]))
+            # 가장 최소 값만 합하기
             distance += min(temp)
         sums.append(distance)
     print(min(sums))
