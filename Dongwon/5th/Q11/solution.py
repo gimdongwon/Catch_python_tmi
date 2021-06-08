@@ -7,6 +7,7 @@ def solution(N,K,apples, L, info):
     # 사과 배치
     for x,y in apples:
         board[x-1][y-1] = 1
+
     # 상 우 하 좌
     dx = [-1,0,1,0]
     dy = [0,1,0,-1]
@@ -18,11 +19,11 @@ def solution(N,K,apples, L, info):
     time = 1
     # 회전 방향, 초
     que = deque(info)
+    rotate_time, rotate_direction = que.popleft()
     # 꼬리 모음
     visited = deque([[current_x,current_y]])
     # 2이면 현재 방문 중인 꼬리
     board[current_x][current_y] = 2
-    rotate_time, rotate_direction = que.popleft()
     while True:
         current_x += dx[direction]
         current_y += dy[direction]
