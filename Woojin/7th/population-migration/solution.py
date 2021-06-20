@@ -10,7 +10,7 @@ def bfs(n, l, r, population, visited):
                 queue = deque([(i, j)]) # 초기화
                 visited[i][j] = True
                 dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-                result = [(i, j, population[i][j])]
+                union = [(i, j, population[i][j])]
     
                 while queue:    
                     x, y = queue.popleft()
@@ -18,9 +18,9 @@ def bfs(n, l, r, population, visited):
                     for dx, dy in dirs:
                         nx, ny = x + dx, y + dy
                         
-                        if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                        if not (0 <= nx < n and 0 <= ny < n):
                             continue
-                        
+                                                
                         if visited[nx][ny]:
                             continue
                         
@@ -29,14 +29,14 @@ def bfs(n, l, r, population, visited):
                             
                         visited[nx][ny] = True
                         queue.append((nx, ny))
-                        result.append((nx, ny, population[nx][ny]))
+                        union.append((nx, ny, population[nx][ny]))
                 
-                if len(result) >= 2:
+                if len(union) >= 2:
                     check_group = True
-                    p_mean = sum(r[2] for r in result) // len(result)
+                    popn_mean = sum(r[2] for r in union) // len(union)
                     
-                    for x, y, _ in result:
-                        population[x][y] = p_mean
+                    for x, y, _ in union:
+                        population[x][y] = popn_mean
     
     if check_group:
         return 1
@@ -46,7 +46,6 @@ def bfs(n, l, r, population, visited):
 def solution(n, l, r, population):
     visited = [[False] * n for _ in range(n)]
     count = 0
-    visited_copy = deepcopy(visited)
     
     while True:
         visited_copy = deepcopy(visited)

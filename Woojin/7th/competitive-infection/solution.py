@@ -21,8 +21,8 @@ def solution(n, test_tube, result_info):
 
             for dx, dy in dirs:
                 nx, ny = x + dx, y + dy
-
-                if nx < 0 or nx >= n or ny < 0 or ny >= n:
+                
+                if not (0 <= nx < n and 0 <= ny < n):
                     continue
                 
                 if test_tube[nx][ny] == 0:

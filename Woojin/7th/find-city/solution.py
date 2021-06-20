@@ -15,13 +15,13 @@ def solution(n, roads, k, x):
     visited[x - 1] = True
     
     while queue:
-        node = queue.popleft()
+        city = queue.popleft()
         result = []
         
-        for next_node in graph[node]:
-            if not visited[next_node]:
-                visited[next_node] = True
-                result.append(next_node)
+        for next_city in graph[city]:
+            if not visited[next_city]:
+                visited[next_city] = True
+                result.append(next_city)
         
         queue.extend(result)
         k -= 1
@@ -31,6 +31,7 @@ def solution(n, roads, k, x):
                 return sorted([x + 1 for x in result])
             else:
                 return -1
+            
     return -1
 
 print(solution(4, [[1, 2], [1, 3], [2, 3], [2, 4]], 2, 1)) # [4]

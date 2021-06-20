@@ -9,27 +9,26 @@ def sign(x):
     else:
         return 0
 
-def get_answer(sequence, operator):
-    sequence_copy = deepcopy(sequence)
-    
+def get_answer(sequence, operator):    
     for oper in operator:
         if oper == "/":
-            x = sequence_copy[0]
-            y = sequence_copy[1]
-            sequence_copy[:2] = [(sign(x)*sign(y)) * (abs(x)//abs(y))]
+            x = sequence[0]
+            y = sequence[1]
+            sequence[:2] = [(sign(x)*sign(y)) * (abs(x)//abs(y))]
         else:
-            x = str(sequence_copy[0])
-            y = str(sequence_copy[1])
-            sequence_copy[:2] = [eval(x + oper + y)]
+            x = str(sequence[0])
+            y = str(sequence[1])
+            sequence[:2] = [eval(x + oper + y)]
     
-    return sequence_copy[0]
+    return sequence[0]
     
 def solution(sequence, operator_info):
     base_operator = operator_info[0] * "+" + operator_info[1] * "-" + operator_info[2] * "*" + operator_info[3] * "/"
     result = []
     
     for operator in set(permutations(base_operator, len(base_operator))):
-        result.append(get_answer(sequence, operator))
+        sequence_copy = deepcopy(sequence)
+        result.append(get_answer(sequence_copy, operator))
     
     result.sort()
     
