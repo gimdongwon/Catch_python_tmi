@@ -18,7 +18,7 @@ def solution(s):
             if str_group[i] == str_group[i+1]:
                 num += 1
             # 다르면 숫자와 str 합쳐서 candidates에 넣어주기
-            else:   
+            else:
                 if num > 1:
                     candidates.append(str(num)+str_group[i])
                     num = 1
