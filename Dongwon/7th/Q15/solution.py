@@ -2,12 +2,15 @@ from collections import deque
 
 def solution(N,M,K,X, graph_data):
     graph = [[] for __ in range(N+1)]
+    # 1로 향하는 경우의 수 전부 삽입
     for item in graph_data:
         graph[item[0]].append(item[1])
+
     distance = [-1] * (N+1)
     distance[X] = 0
-
+    # 첫 시작
     que = deque([X])
+    
     while que:
         p = que.popleft()
         for item in graph[p]:
@@ -23,7 +26,7 @@ def solution(N,M,K,X, graph_data):
             check = True
     if not check:
         print(-1)
-
+    
 solution(4,4,2,1, [[1,2],[1,3],[2,3],[2,4]])
 solution(4,3,2,1, [[1,2],[1,3],[1,4]])
 solution(4,4,1,1, [[1,2],[1,3],[2,3],[2,4]])

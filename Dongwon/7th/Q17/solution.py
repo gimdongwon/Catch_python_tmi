@@ -21,7 +21,7 @@ def solution(X,Y, graph, last_position):
             if -1 < new_x < Y and -1 < new_y < Y and graph[new_x][new_y] == 0:
                 graph[new_x][new_y] = p
                 que.append([graph[new_x][new_y], new_x,new_y, time+1])
-    print(graph)           
+    
     print(graph[last_position[1]-1][last_position[2]-1])
 
 solution(3,3,[[1,0,2],[0,0,0],[3,0,0]], [2,3,2])

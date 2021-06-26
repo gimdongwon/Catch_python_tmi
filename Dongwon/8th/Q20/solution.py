@@ -1,47 +1,70 @@
-def divide_str(p):
-    num = 0
-    for i in range(len(p)):
-        if p[i] == "(":
-            num += 1
-        else:
-            num -= 1
-        if num == 0:
-            return p[:i+1], p[i+1:]
+from itertools import combinations
+import copy
 
-def balance_check(u):
-    num = 0
-    for i in u:
-        if i == "(":
-            num += 1
-        else:
-            if num == 0:
+N = int(input())
+
+graph =[]
+
+for __ in range(N):
+    graph.append(input().split())
+
+Teachers = []
+wall_candidates = []
+
+for i in range(N):
+    for j in range(N):
+        if graph[i][j] == "X":
+            wall_candidates.append([i,j])
+        elif graph[i][j] == "T":
+            Teachers.append([i,j])
+
+candidates = list(combinations(wall_candidates, 3))
+
+def set_wall(candidates):
+    for candidate in candidates:
+        copy_graph = copy.deepcopy(graph)
+        for i in range(3):
+            copy_graph[candidate[i][0]][candidate[i][1]] = "O"
+        if check_supervise(copy_graph, Teachers) == True:
+            return "YES"
+    return "NO"
+
+def check_supervise(graphs, teachers):
+    global N
+    for teacher in teachers:
+        x,y = teacher
+        nx, ny = x, y
+        # x 감소
+        while nx > 0:
+            nx -= 1
+            if graphs[nx][ny] == "S":
                 return False
-            num -= 1
+            elif graphs[nx][ny] == "O":
+                break
+        nx, ny = x, y
+        # x 증가
+        while nx < N-1:
+            nx += 1
+            if graphs[nx][ny] == "S":
+                return False
+            elif graphs[nx][ny] == "O":
+                break
+        nx, ny = x, y
+        # y 감소
+        while ny > 0:
+            ny -= 1
+            if graphs[nx][ny] == "S":
+                return False
+            elif graphs[nx][ny] == "O":
+                break
+        nx, ny = x, y
+        # y 증가
+        while ny < N-1:
+            ny += 1
+            if graphs[nx][ny] == "S":
+                return False
+            elif graphs[nx][ny] == "O":
+                break
     return True
-
-def solution(p):
-    # 1
-    if len(p)==0:
-        return ""
-    # 2
-    u,v = divide_str(p)
-    # 3
-    if balance_check(u):
-        # 3-1
-        return u + solution(v)
-    else:
-        # 4-1
-        answer = "("
-        # 4-2
-        answer += solution(v)
-        # 4-3
-        answer += ")"
-        
-        # 4-4
-        for i in u[1:-1]:
-            if i == "(":
-                answer += ")"
-            else:
-                answer += "("
-        # 4-5
-        return answer
+result = set_wall(candidates)
+print(result)
