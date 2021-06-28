@@ -1,25 +1,15 @@
-# 프로그래머스 스타일
-
-
-
 # 백준 스타일
 
 from copy import deepcopy
 from itertools import combinations
 
-N = int(input())
-corridor = []
-
-for _ in range(N):
-    corridor.append(list(input().split(" ")))
-
-def install_obs(corridor, indices):
+def install_obs(corridor, indices): # obs: obstacle
     for i, j in indices:
         corridor[i][j] = "O"
     
     return corridor
 
-def find_student(N, x, y, corridor): # (x, y): T의 위치
+def find_student(N, corridor, x, y): # (x, y): T의 위치
     dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     
     for dx, dy in dirs:
@@ -40,7 +30,7 @@ def find_students(N, corridor):
     for i in range(N):
         for j in range(N):
             if corridor[i][j] == "T":
-                if find_student(N, i, j, corridor):
+                if find_student(N, corridor, i, j):
                     return True
     
     return False
@@ -54,6 +44,12 @@ def get_vacancies(N, corridor):
                 vacancies.append((i, j))
     
     return vacancies
+
+N = int(input())
+corridor = []
+
+for _ in range(N):
+    corridor.append(list(input().split(" ")))
 
 vacancies = get_vacancies(N, corridor)
 
