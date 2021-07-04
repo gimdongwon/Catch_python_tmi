@@ -1,25 +1,19 @@
-# 백준 스타일
+# --- 백준 스타일 ---
 
 from collections import deque
 from copy import deepcopy
 from itertools import combinations
 
-N, M = map(int, input().split(" "))
-lab = []
-
-for _ in range(N):
-    lab.append(list(map(int, input().split(" "))))
-
-def install_wall(lab, indices):
+def install_walls(lab, indices):
     for i, j in indices:
         lab[i][j] = 1
     
     return lab
 
-def spread_virus(N, M, lab):
+def count_spreaded_viruses(N, M, lab):
     dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     queue = deque()
-    count = 0
+    cnt = 0 # cnt: count virus
     
     for i in range(N):
         for j in range(M):
@@ -40,27 +34,27 @@ def spread_virus(N, M, lab):
             
             queue.append((nx, ny))
             lab[nx][ny] = 2
-            count += 1
+            cnt += 1
     
-    return count
+    return cnt
 
-def get_vacancies(N, M, lab):
-    vacancies = []
+N, M = map(int, input().split())
+lab = []
+vacancies = []
 
-    for i in range(N):
-        for j in range(M):
-            if lab[i][j] == 0:
-                vacancies.append((i, j))
+for i in range(N):
+    lab.append(list(map(int, input().split())))
     
-    return vacancies
-          
-vacancies = get_vacancies(N, M, lab)
+    for j in range(M):
+        if lab[i][j] == 0:
+            vacancies.append((i, j))
+        
 vac_len = len(vacancies)
 answer = 0
 
 for indices in combinations(vacancies, 3):
     lab_copy = deepcopy(lab)
-    lab_copy = install_wall(lab_copy, indices)
-    answer = max(answer, vac_len - spread_virus(N, M, lab_copy) - 3)
+    lab_copy = install_walls(lab_copy, indices)
+    answer = max(answer, vac_len - count_spreaded_viruses(N, M, lab_copy) - 3)
 
 print(answer)

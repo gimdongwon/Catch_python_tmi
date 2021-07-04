@@ -12,18 +12,18 @@ def is_correct(p):
     if len(p) == 0 or p[-1] == "(":
         return False
     
-    count = 0
+    cnt = 0
     
     for x in p:
         if x == "(":
-            count += 1
+            cnt += 1
         else:
-            count -= 1
+            cnt -= 1
             
-        if count < 0:
+        if cnt < 0:
             return False
 
-    return count == 0
+    return cnt == 0
 
 def transform_p(u, v):
     result = "(" + solution(v) + ")"

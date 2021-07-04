@@ -1,17 +1,17 @@
 from copy import deepcopy
 from math import isinf
 
-def get_dist_matrix(weak):
-    n = len(weak)
-    matrix = [[0] * n for _ in range(n)]
+def get_dist_matrix(n, weak):
+    N = len(weak)
+    matrix = [[0] * N for _ in range(N)]
     
-    for i in range(n):
-        for j in range(i + 1, n):
+    for i in range(N):
+        for j in range(i + 1, N):
             matrix[i][j] = weak[j] - weak[i]
     
-    for i in range(n):
+    for i in range(N):
         for j in range(i):
-            matrix[i][j] = 12 - matrix[j][i]
+            matrix[i][j] = n - matrix[j][i]
 
     return matrix
 
@@ -24,15 +24,9 @@ def get_n_friends(start, dist_matrix, dist):
 
     max_dist = dist.pop()
 
-    
-    
-
-
-
-
 
 def solution(n, weak, dist):
-    dist_matrix = get_dist_matrix(weak)
+    dist_matrix = get_dist_matrix(n, weak)
     result = []
 
     for start in range(len(weak)):
