@@ -1,4 +1,5 @@
 from itertools import combinations as cb
+from itertools import product
 
 def distance(x, y) :
     # x = (r1, c1), y = (r2, c2)
