@@ -1,11 +1,6 @@
 # --- 백준 스타일 ---
 
 N = int(input())
-houses = list(map(int, input().split()))
-houses.sort()
-h_len = len(houses)
+houses = sorted(map(int, input().split()))
 
-if h_len % 2:
-    print(houses[h_len // 2])
-else:
-    print(houses[h_len//2 - 1])
+print(houses[(len(houses)-1) // 2])
