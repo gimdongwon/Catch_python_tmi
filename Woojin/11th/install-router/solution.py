@@ -1,18 +1,56 @@
 # --- 백준 스타일 ---
 
-N = int(input())
-transcript = []
+from sys import stdin
+
+def get_mid(homes, start, end):
+    mid = (start+end) // 2
+    mean = (homes[start]+homes[end]) // 2
+    
+    if homes[mid] > mean:
+        while homes[mid] > mean:
+            mid -= 1
+        
+        if mean - homes[mid] > homes[mid + 1] - mean:
+            mid += 1
+    else:
+        while homes[mid] <= mean:
+            mid += 1
+        
+        if homes[mid] - mean > mean - homes[mid - 1]:
+            mid -= 1
+    
+    return mid
+
+N, C = map(int, input().split())
+homes = []
 
 for _ in range(N):
-    name, kor, eng, math = input().split()
-    transcript.append([name, int(kor), int(eng), int(math)])
+    homes.append(int(stdin.readline()))
 
-# 국어 내림차순
-# 영어 오름차순
-# 수학 내림차순
-# 이름 오름차순
+homes.sort()
+start = 0
+end = N - 1
+C -= 2
 
-transcript.sort(key=lambda x: (-x[1], x[2], -x[3], x[0]))
+if C == 0:
+    print(homes[end] - homes[start])
+else:
+    mid = get_mid(start, end)
+    C -= 1
+    
+    if C == 0:
+        print(min(homes[end] - homes[mid], homes[mid] - homes[start]))
+    else:
+        if homes[end] - homes[mid] > homes[mid] - homes[start]:
+            mid = get_mid(homes, mid, end)
+            C -= 1
 
-for name, *_ in transcript:
-    print(name)
+while C > 0:
+    mid = get_mid(start, end)
+while start <= end:
+    if C == 0:
+        break
+    
+    mid = get_mid(homes, start, end)   
+    C -= 1
+    
