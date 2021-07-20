@@ -12,7 +12,6 @@ while start <= end:
     elif mid < arr[mid]:
         end = mid - 1
     else:
-        break
+        print(mid)
 
 print(start, end, mid)
-print(mid)
