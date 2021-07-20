@@ -1,5 +1,5 @@
 # --- 프로그래머스 스타일 ---
-
+# 다섯 번 시도 만에 성공
 
 # --- 첫 번째 시도 ---
 # 효율성 3개 실패
@@ -269,3 +269,39 @@ def solution(words, queries):
     word_dict = get_word_dict(words)
     
     return [search_lyric(word_dict[len(query)], query) for query in queries]
+
+# --- 다섯 번째 시도 ---
+# 드디어 성공
+
+from bisect import bisect_left, bisect_right
+from collections import defaultdict
+
+def get_word_dict(words):
+    word_dict = defaultdict(list)
+    
+    for word in words:
+        word_dict[len(word)].append(word)
+    
+    for key, value in word_dict.items():
+        word_dict[key] = [sorted(value), sorted(v[::-1] for v in value)]
+    
+    return word_dict
+
+def solution(words, queries):
+    word_dict = get_word_dict(words)
+    result = []
+    
+    for query in queries:
+        words = word_dict[len(query)]
+        
+        if words:
+            if query[-1] == "?":
+                words = words[0]
+                result.append(bisect_right(words, query.replace("?", "z")) - bisect_left(words, query.replace("?", "a")))
+            else:
+                words = words[1]
+                result.append(bisect_right(words, query.replace("?", "z")[::-1]) - bisect_left(words, query.replace("?", "a")[::-1]))
+        else:
+            result.append(0)
+    
+    return result
