@@ -287,6 +287,10 @@ def get_word_dict(words):
     
     return word_dict
 
+def count_words(words, start, end):
+    
+    return bisect_right(words, end) - bisect_left(words, start)
+
 def solution(words, queries):
     word_dict = get_word_dict(words)
     result = []
@@ -297,10 +301,10 @@ def solution(words, queries):
         if words:
             if query[-1] == "?":
                 words = words[0]
-                result.append(bisect_right(words, query.replace("?", "z")) - bisect_left(words, query.replace("?", "a")))
+                result.append(count_words(words, query.replace("?", "a"), query.replace("?", "z")))
             else:
                 words = words[1]
-                result.append(bisect_right(words, query.replace("?", "z")[::-1]) - bisect_left(words, query.replace("?", "a")[::-1]))
+                result.append(count_words(words, query.replace("?", "a")[::-1], query.replace("?", "z")[::-1]))
         else:
             result.append(0)
     
