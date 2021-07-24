@@ -1,12 +1,16 @@
 # --- 백준 스타일 ---
 
-from bisect import bisect_left, bisect_right
+n = int(input())
+triangle = []
 
-N, x = map(int, input().split())
-sequence = list(map(int, input().split()))
-result = bisect_right(sequence, x) - bisect_left(sequence, x)
+for _ in range(n):
+    triangle.append(list(map(int, input().split())))
+    
+for i in reversed(range(n)):
+    for j in range(i + 1):
+        if i == n - 1:
+            continue
+        
+        triangle[i][j] += max(triangle[i + 1][j], triangle[i + 1][j + 1])
 
-if result:
-    print(result)
-else:
-    print(-1)
+print(triangle[0][0])
