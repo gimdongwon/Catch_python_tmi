@@ -15,7 +15,6 @@ def get_word_dict(words):
     
     return word_dict
 
-
 def solution(words, queries):
     word_dict = get_word_dict(words)
     result = []
@@ -248,7 +247,6 @@ def get_wildcard_idx(query):
                 start = mid
         
         return (mid + 1, len(query) - 1)
-
 
 def search_lyric(words, query):
         idx = get_wildcard_idx(query)
