@@ -2,7 +2,7 @@ N,C = map(int, input().split())
 
 houses = [int(input()) for _ in range(N)]
 
-houses.sort()
+houses.sort() # 정렬된 상태로 들어오지 않아 정렬.
 
 answer = 0
 start, end = 1, houses[-1] - houses[0]
@@ -11,7 +11,7 @@ while start <= end:
     mid = (start + end) // 2
     wifis = 1 # 공유기 맨처음거 설치하고 시작
     start_house = houses[0] # 처음 시작 위치
-
+    print(start, end, mid, answer)
     # 거리 비교
     for i in range(1,N):
         # 두 공유기 사이 거리를 이전보다 크게 설치 가능한 경우
@@ -28,3 +28,7 @@ while start <= end:
         end = mid - 1
 
 print(answer)
+
+# 1 2 4 8 9
+# o x o o x
+# o x o x o
