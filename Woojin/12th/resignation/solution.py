@@ -1,56 +1,21 @@
 # --- 백준 스타일 ---
 
-from sys import stdin
-
-def get_mid(homes, start, end):
-    mid = (start+end) // 2
-    mean = (homes[start]+homes[end]) // 2
-    
-    if homes[mid] > mean:
-        while homes[mid] > mean:
-            mid -= 1
-        
-        if mean - homes[mid] > homes[mid + 1] - mean:
-            mid += 1
-    else:
-        while homes[mid] <= mean:
-            mid += 1
-        
-        if homes[mid] - mean > mean - homes[mid - 1]:
-            mid -= 1
-    
-    return mid
-
-N, C = map(int, input().split())
-homes = []
+N = int(input())
+consults = []
 
 for _ in range(N):
-    homes.append(int(stdin.readline()))
+    consults.append(tuple(map(int, input().split())))
 
-homes.sort()
-start = 0
-end = N - 1
-C -= 2
+dp = [0] * (N + 1)
+max_price = 0
 
-if C == 0:
-    print(homes[end] - homes[start])
-else:
-    mid = get_mid(start, end)
-    C -= 1
-    
-    if C == 0:
-        print(min(homes[end] - homes[mid], homes[mid] - homes[start]))
-    else:
-        if homes[end] - homes[mid] > homes[mid] - homes[start]:
-            mid = get_mid(homes, mid, end)
-            C -= 1
+for i in reversed(range(N)):
+    time, price = consults[i]
 
-while C > 0:
-    mid = get_mid(start, end)
-while start <= end:
-    if C == 0:
-        break
+    try:
+        dp[i] = max(price + dp[i + time], max_price)
+        max_price = dp[i]
+    except IndexError:
+        dp[i] = max_price
     
-    mid = get_mid(homes, start, end)   
-    C -= 1
-    
+print(dp[0])

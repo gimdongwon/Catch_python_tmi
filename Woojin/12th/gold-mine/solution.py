@@ -9,27 +9,33 @@ def get_2d(array, n, m):
     return new_array
 
 def get_value(matrix, i, j):
-    try:
+    n, m = len(matrix), len(matrix[0])
+    
+    if 0 <= i < n and 0 <= j < m:
         return matrix[i][j]
-    except IndexError:
+    else:
         return 0
 
 def get_max_gold(test_case):
     n, m = len(test_case), len(test_case[0])
     
-    for j in reversed(range(m)):
+    for j in range(m):
         for i in range(n):
-            if j == m - 1:
+            if j == 0:
                 continue
             
-            test_case[i][j] += max(get_value(test_case, i - 1, j + 1), get_value(test_case, i, j + 1), get_value(test_case, i + 1, j + 1))
+            test_case[i][j] += max(
+                get_value(test_case, i - 1, j - 1), 
+                get_value(test_case, i, j - 1), 
+                get_value(test_case, i + 1, j - 1)
+                )
     
-    return max(t[0] for t in test_case)
+    return max(t[m - 1] for t in test_case)
 
 T = int(input())
 test_cases = []
 
-for _ in range(2 * T):
+for _ in range(T):
     n, m = map(int, input().split())
     test_case = list(map(int, input().split()))
     test_cases.append(get_2d(test_case, n, m))
