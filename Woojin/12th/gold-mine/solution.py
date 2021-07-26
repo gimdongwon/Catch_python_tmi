@@ -30,7 +30,7 @@ def get_max_gold(test_case):
                 get_value(test_case, i + 1, j - 1)
                 )
     
-    return max(t[m - 1] for t in test_case)
+    return max(t[m - 1] for t in test_case) # print(max(list(zip(*test_case))[m - 1]))
 
 T = int(input())
 test_cases = []
