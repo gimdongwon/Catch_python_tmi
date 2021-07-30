@@ -1,4 +1,5 @@
 # --- 백준 스타일 ---
+# 다익스트라 알고리즘 쓴 게 끝
 
 from heapq import heappop, heappush
 

@@ -1,6 +1,7 @@
 # --- 백준 스타일 ---
 
 # --- 풀이 1 ---
+# 자기 자신으로 가는 경우를 0으로 초기화하지 않음
 
 n = int(input())
 m = int(input())
@@ -19,13 +20,14 @@ for k in range(1, n + 1):
 for i in range(1, n + 1):
     for j in range(1, n + 1):
         if graph[i][j] == INF or i == j:
-            print(0, end = " ")
+            print(0, end=" ")
         else:
-            print(graph[i][j], end = " ")
+            print(graph[i][j], end=" ")
         
     print()
     
 # --- 풀이 2 ---
+# 자기 자신으로 가는 경우를 0으로 초기화함
 
 n = int(input())
 m = int(input())
