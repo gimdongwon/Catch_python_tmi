@@ -21,6 +21,7 @@ while len(ugly_numbers) <= 10000:
     numbers = result
 
 ugly_numbers = sorted(ugly_numbers)
+
 print(ugly_numbers[n - 1])
 
 # --- 풀이 2 ---
