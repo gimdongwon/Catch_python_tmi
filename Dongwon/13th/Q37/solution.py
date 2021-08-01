@@ -15,6 +15,7 @@ for _ in range(m):
     if c < graph[a][b]:
         graph[a][b] = c
 
+# 플로이드 워셜 점화식 ! 기억하기
 for k in range(1, n+1):
     for a in range(1, n+1):
         for b in range(1, n+1):
@@ -26,5 +27,5 @@ for a in range(1, n+1):
             print(0, end=' ')
         else:
             print(graph[a][b], end=' ')
-    print()
+    print() # 줄바꿈
 # print(graph)
