@@ -5,6 +5,8 @@ def solution(n):
     ugly_nums[0] = 1
 
     i2 = i3 = i5 = 0
+    # 2 3 5
+    # 1 1 0
 
     next2, next3, next5 = 2,3,5
     for i in range(1,n):
@@ -23,4 +25,7 @@ def solution(n):
     print(ugly_nums)
     print(ugly_nums[n-1])
 
-solution(14)
+solution(200)
+
+# 에테스 테네스
+# 아리스토 

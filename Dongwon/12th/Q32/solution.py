@@ -14,7 +14,7 @@ for i in range(1, len(board)):
             pre_right = board[i-1][j]
 
         board[i][j] = board[i][j] + max(pre_left, pre_right)
-
+print(board)
 # result = 0
 
 print(max(board[n-1]))
