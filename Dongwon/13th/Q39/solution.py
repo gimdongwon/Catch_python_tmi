@@ -20,6 +20,7 @@ q = [(graph[x][y], x, y)]
 heapq.heapify(q)
 distance[x][y] = graph[x][y]
 
+# bfs 풀이법과 유사
 while q:
     dist, x,y = heapq.heappop(q)
     if distance[x][y] < dist:
