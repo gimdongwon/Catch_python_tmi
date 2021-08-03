@@ -1,21 +1,29 @@
 # coding=utf-8
-def solution(n, m, bus):
+
+# 플로이드 풀이
+def solution(n, m, price):
     INF = int(1e9)
     graph = [[INF] * n for _ in range(n)]
 
     for i in range(m):
-        a, b, c = bus[i]
+        a, b, c = price[i]
         graph[a - 1][b - 1] = min(graph[a - 1][b - 1], c)
+
+    # print(graph)
 
     # 시작 도시와 도착 도시가 같은 경우
     for i in range(n):
         graph[i][i] = 0
 
-    # 플로이드 점화식
+    # print(graph)
+
+    # 플로이드 점화식 D(ab) = min(D(ab), D(a(ak)+a(kb)))
     for k in range(n):
         for i in range(n):
             for j in range(n):
                 graph[i][j] = min(graph[i][k] + graph[k][j], graph[i][j])
+
+    # print(graph)
 
     # 이동할 수 없는 경우
     for i in range(n):
