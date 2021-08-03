@@ -14,7 +14,7 @@ for _ in range(m):
     a,b,c = map(int, input().split())
     if c < graph[a][b]:
         graph[a][b] = c
-
+print(graph)
 # 플로이드 워셜 점화식 ! 기억하기
 for k in range(1, n+1):
     for a in range(1, n+1):

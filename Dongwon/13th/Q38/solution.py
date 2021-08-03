@@ -1,3 +1,4 @@
+import pprint
 INF = int(1e9)
 
 N,M = map(int, input().split())
@@ -19,6 +20,7 @@ for k in range(N+1):
             graph[a][b] = min(graph[a][b], graph[a][k] + graph[k][b])
 
 result = 0
+pprint.pprint(graph)
 
 for i in range(1, N+1):
     count = 0
