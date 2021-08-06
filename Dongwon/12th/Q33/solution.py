@@ -17,4 +17,5 @@ for i in range(n-1, -1, -1):
         # dp[i] = max_value
         dp[i] = max(dp)
     # print(consult[i][0], i, time, n, max_value, dp)
-print(max_value)
+# print(max_value)
+print(max(dp))

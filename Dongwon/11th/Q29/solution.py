@@ -12,6 +12,7 @@ while start <= end:
     wifis = 1 # 공유기 맨처음거 설치하고 시작
     start_house = houses[0] # 처음 시작 위치
     print(start, end, mid, answer)
+    
     # 거리 비교
     for i in range(1,N):
         # 두 공유기 사이 거리를 이전보다 크게 설치 가능한 경우
@@ -32,3 +33,6 @@ print(answer)
 # 1 2 4 8 9
 # o x o o x
 # o x o x o
+
+# 공유기 사이의 적정 거리값을 찾는 것이 목표인데
+# 두 공유기 사이의 거리의 최대값을 찾기 위해 거리 값을 이분탐색으로 접근.

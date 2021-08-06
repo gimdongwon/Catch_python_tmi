@@ -22,6 +22,7 @@ for j in range(1,m):
         
         board[i][j] = board[i][j] + max(left, left_down, left_up)
 result = 0
+print(board)
 for i in range(n):
     result = max(result, board[i][m-1])
 print(result)
