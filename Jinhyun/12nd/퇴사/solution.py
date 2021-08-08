@@ -29,6 +29,7 @@ def solution(n, t, p) :
     cost = list(map(int, p.split()))
     dp = [0] * (n + 1)
     for i in range(n-1, -1, -1) :
+        print(dp)
         if i + time[i] > n :
             dp[i] = dp[i+1]
         else :
@@ -37,5 +38,5 @@ def solution(n, t, p) :
 
 # print(solution(7, '3 5 1 1 2 4 2', '10 20 10 20 15 40 200'))
 # print(solution(10,'1 1 1 1 1 1 1 1 1 1', '1 2 3 4 5 6 7 8 9 10'))
-# print(solution(10, '5 5 5 5 5 5 5 5 5 5', '10 9 8 7 6 10 9 8 7 6'))
-print(solution(10, '5 4 3 2 1 1 2 3 4 5', '50 40 30 20 10 10 20 30 40 50'))
+print(solution(10, '5 5 5 5 5 5 5 5 5 5', '10 9 8 7 6 10 9 8 7 6'))
+# print(solution(10, '5 4 3 2 1 1 2 3 4 5', '50 40 30 20 10 10 20 30 40 50'))
