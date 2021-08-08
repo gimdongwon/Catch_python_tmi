@@ -3,6 +3,7 @@
 1은 못생긴 수라고 가정
 '''
 from collections import defaultdict
+import time
 # 소인수 분해 함수
 def get_factorization(num) :
     dic = defaultdict(int)
@@ -27,6 +28,7 @@ def solution(n) :
                 on_off = False
                 break
         if on_off :
-            print(count)
             n -= 1
     return count
+
+print(get_factorization(8))

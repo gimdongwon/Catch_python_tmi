@@ -1,3 +1,5 @@
+from pprint import pprint
+
 def solution(n, triangle) :
     up, down = 0, 0
     for i in range(1, n) :
@@ -11,7 +13,8 @@ def solution(n, triangle) :
             else :
                 down = triangle[i-1][j]
             triangle[i][j] += max(up, down)
-
+    
+    pprint(triangle)
     return max(triangle[-1])
 
 print(solution(5,[[7],[3,8],[8,1,0],[2,7,4,4],[4,5,2,6,5]]))
