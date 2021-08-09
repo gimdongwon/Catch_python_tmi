@@ -3,7 +3,6 @@ def find_parent(parent, x) :
         return find_parent(parent, parent[x])
     return x
 
-# 두 원소 속한 집합 찾기
 def union_parent(parent, a, b) :
     a = find_parent(parent, a)
     b = find_parent(parent, b)
@@ -11,7 +10,6 @@ def union_parent(parent, a, b) :
         parent[b] = a
     else :
         parent[a] = b
-    return parent
 
 def solution(n, m, travel, route) :
     travel = list(map(int, travel.split()))
@@ -20,18 +18,17 @@ def solution(n, m, travel, route) :
     for i in range(n) :
         for j in range(i, n) :
             if travel[i][j] == 1 :
-                parent = union_parent(parent, i+1, j+1)
+                union_parent(parent, i+1, j+1)
     
     plan = []
     
     for ro in route :
         plan.append(find_parent(parent, ro))
 
-
     if len(set(plan)) == 1 :
-        print("YES")
+        return "YES"
     else :
-        print("NO")
+        return "NO"
 
         
-solution(5, 4, '0 1 0 1 1 1 0 1 1 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 0', [2,3,4,3])
+print(solution(5, 4, '0 1 0 1 1 1 0 1 1 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 0', [2,3,4,3]))
