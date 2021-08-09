@@ -32,9 +32,7 @@ def solution(n, m, street):
     dp = []
     result = 0
 
-    parent = [0] * n
-    for i in range(n):  # 부모를 각 노드로 초기화
-        parent[i] = i
+    parent = [i for i in range(n)]  # 부모를 각 노드로 초기화
 
     for i in street:
         x, y, cost = i
@@ -44,8 +42,7 @@ def solution(n, m, street):
 
     total_cost = 0
     min_cost = 0
-    for i in dp:
-        cost, x, y = i
+    for cost, x, y in dp:
         total_cost += cost
         # 부모가 다른 경우(사이클이 발생하지 않는 경우)
         if different_parent(parent, x, y):
