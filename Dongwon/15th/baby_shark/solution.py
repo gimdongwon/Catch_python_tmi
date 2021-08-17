@@ -29,7 +29,7 @@ def bfs(x,y):
     answer = 0
     while q:
         size = len(q)
-
+        # 왼쪽 상어 우선시 하기 위한 sort
         q = deque(sorted(q))
         for _ in range(size):
             x,y = q.popleft()
@@ -38,6 +38,7 @@ def bfs(x,y):
             if graph[x][y] != 0 and graph[x][y] < shark:
                 graph[x][y] = 0
                 eat += 1
+                # 상어 사이즈 업
                 if eat == shark:
                     shark += 1
                     eat = 0
@@ -45,14 +46,17 @@ def bfs(x,y):
                 # 먹고 난 뒤, 현재 위치 기준으로 다시 탐색
                 q, visited = deque(), set([(x,y)])
                 eat_flag = True
-
+                # 정답이 마지막으로 먹은 시간이기에 미리 저장
                 answer = time
+
             for i in range(4):
                 nx,ny = x + dx[i], y + dy[i]
                 if -1 < nx < n and -1 < ny < n and (nx,ny) not in visited:
+                    # 0도 넣음
                     if graph[nx][ny] <= shark:
                         q.append((nx,ny))
                         visited.add((nx, ny))
+            # 해당 위치에서 먹은 후라면 추가 탐색이 필요없으므로 for 탈출
             if eat_flag:
                 eat_flag = False
                 break
