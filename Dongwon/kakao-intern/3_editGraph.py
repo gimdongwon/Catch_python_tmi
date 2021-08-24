@@ -1,0 +1,92 @@
+def solution (n,k,cmd):
+    selected = k
+    stack = []
+    board = [i+1 for i in range(n)]
+    arr = [1 for _ in range(n)]
+    for item in cmd:
+        # print(item)
+        # print(arr, selected, stack)
+        if len(item) == 3:
+            direction, score = item.split(" ")
+            temp = 0
+            if direction == "U":
+                while temp < int(score) and selected >= 0:
+                    selected -= 1
+                    temp += arr[selected]
+            else:
+                while temp < int(score) and selected <= n-1:
+                    selected += 1
+                    temp += arr[selected]
+        else:
+            if item == "Z":
+                if stack:
+                    garbage = stack.pop()
+                    arr[garbage] = 1
+            else:
+                arr[selected] = 0
+                stack.append(selected)
+                if selected < n-1:
+                    selected += 1
+                    while arr[selected] == 0:
+                        selected += 1
+                        if arr[selected] != 0:
+                            break
+                else:
+                    selected -= 1
+                    while arr[selected] == 0:
+                        selected -= 1
+                        if arr[selected] != 0:
+                            break
+                # 기본은 +1 증가인데 다음 노드가 없으면 다음으로 맨 마지막 노드이면 그전 노드로
+    return "".join(list(map(lambda x: "O" if x==1 else "X", arr)))
+
+
+# 3차시도
+# 유사 링크드 리스트 시도
+
+def solution (n,k,cmd):
+    selected = k
+    stack = []
+    board = {}
+    for i in range(n):
+        board[i] = i
+            
+    arr = [1 for _ in range(n)]
+    
+    for item in cmd:
+        if len(item) == 3:
+            direction, score = item.split(" ")
+            if direction == "U":
+                temp = selected - int(score)
+                if temp < 0:
+                    temp = 0
+                selected = board[temp]
+            else:
+                temp = selected + int(score)
+                if temp > n-1:
+                    temp = n-1
+                selected = board[temp]
+        else:
+            if item == "Z":
+                if stack:
+                    garbage = stack.pop()
+                    arr[garbage] = 1
+                    board[garbage] = garbage
+            else:
+                arr[selected] = 0
+                stack.append(selected)
+                if selected < n-1:
+                    board[selected] = board[selected+1]
+                    selected = board[selected]
+                    # board[i] = 
+                else:
+                    board[selected] = board[selected-1]
+                    selected = board[selected]
+                    # for i in range(n):
+                    #     if board[i] == board[selected]:
+                    #         board[selected] = i
+                    #         print(i)
+                    #         selected = i
+        print(item)
+        print(board, selected, stack)
+    return "".join(list(map(lambda x: "O" if x==1 else "X", arr)))
