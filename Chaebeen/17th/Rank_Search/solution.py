@@ -20,15 +20,9 @@ def solution(info, query):
         q_str = set(nq[:-1])
         q_num = int(nq[-1])
         for a in applicants:
-            print(set(nq[:-1]), set(a), int(nq[-1]), int(a[-1]), "OK" if int(nq[-1]) <= int(a[-1]) else "NOT")
             if set(a).issuperset(q_str) and q_num <= int(a[-1]):
                 cnt += 1
         answer.append(cnt)
-
-    print(applicants)
-    print(qualifications)
-    print(answer)
-
 
 solution(["java backend junior pizza 150",
           "python frontend senior chicken 210",
