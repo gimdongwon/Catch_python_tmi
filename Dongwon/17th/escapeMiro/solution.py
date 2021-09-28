@@ -42,6 +42,7 @@ def solution(n, start, end, roads, traps):
             # 현재나 다음 둘 중하나가 trap에 속함.
             elif (cur_trap + next_trap) == 1:
                 node_idx = cur_node if cur_trap == 1 else next_node
+                # 방향을 바꾸어줌.
                 isTrapOn = (state & (1<<trap_dict[node_idx]))>>trap_dict[node_idx]
                 if isTrapOn != road_type:
                     continue
@@ -51,6 +52,8 @@ def solution(n, start, end, roads, traps):
                 n_isTrapOn = (state & (1<<trap_dict[next_node]))>>trap_dict[next_node]
                 if (isTrapOn ^ n_isTrapOn) != road_type:
                     continue
+            # 다음이 노드가 함정 일시
+            # 방향을 반대로 미리 바꾸어줌
             if next_trap == 1:
                 next_state = state ^ (1<<trap_dict[next_node])
             heapq.heappush(que, (next_cost + cur_time ,next_node, next_state))
