@@ -48,7 +48,8 @@ def bfs(x,y):
                 eat_flag = True
                 # 정답이 마지막으로 먹은 시간이기에 미리 저장
                 answer = time
-
+                
+            # 상어가 이동하는 로직
             for i in range(4):
                 nx,ny = x + dx[i], y + dy[i]
                 if -1 < nx < n and -1 < ny < n and (nx,ny) not in visited:
