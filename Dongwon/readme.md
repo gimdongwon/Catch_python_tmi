@@ -64,3 +64,7 @@ counter = Counter(a)
 print(counter)
 # Counter({2:2, 3:2, 1:1})
 ```
+
+### 5. global, nonlocal
+
+https://devbruce.github.io/python/py-13-global,nonlocal/
