@@ -30,7 +30,7 @@ for i in range(m):
                         graph[nx][ny] = 1
                         result +=1
                         queue.append([nx,ny])
-            answer.append(result)
+            answer.apspend(result)
 
 print(len(answer))
 answer.sort()
