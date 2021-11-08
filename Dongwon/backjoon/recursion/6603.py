@@ -17,7 +17,6 @@
 combi = [0 for _ in range(6)]
 
 def dfs(start, depth):
-    print(combi)
     if depth == 6:
         for i in range(6):
             print(combi[i], end=' ')
