@@ -10,5 +10,6 @@ for _ in range(t):
         elif n == 3:
             return 4
         else:
+            # 점화식
             return check(n-1) + check(n-2) + check(n-3)
     print(check(x))
