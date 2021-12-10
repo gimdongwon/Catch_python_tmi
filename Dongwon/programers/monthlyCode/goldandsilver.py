@@ -28,3 +28,36 @@ def solution(a, b, g, s, w, t):
         arr.append(time - t[i])
         
     return max(arr)
+
+# 맞은 풀이
+def solution2(a, b, g, s, w, t):
+    result = []
+    start, end = 0, (10 ** 9) * (10 ** 5) * 4
+    while start <= end:
+        mid = (start + end) // 2
+        gold, silver, total = 0,0,0
+        
+        for i, time in enumerate(t):
+            cnt = (mid - time) // (time * 2) + 1
+
+            if cnt * w[i] > g[i]:
+                gold += g[i]
+            if cnt * w[i] <= g[i]:
+                gold += cnt * w[i]
+            if cnt * w[i] > s[i]:
+                silver += s[i]
+            if cnt * w[i] <= s[i]:
+                silver += cnt * w[i]
+            if s[i] + g[i] < cnt * w[i]:
+                total += s[i] + g[i]
+            if s[i] + g[i] >= cnt * w[i]:
+                total += cnt * w[i]
+
+        if gold >= a and silver >= b and total >= a + b:
+            end = mid - 1
+            result.append(mid)
+            # result = min(result, mid)
+        else:
+            start = mid + 1
+return min(result)
+        
