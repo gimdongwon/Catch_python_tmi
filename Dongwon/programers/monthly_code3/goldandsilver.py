@@ -59,5 +59,6 @@ def solution2(a, b, g, s, w, t):
             # result = min(result, mid)
         else:
             start = mid + 1
-return min(result)
+    
+    return min(result)
         
